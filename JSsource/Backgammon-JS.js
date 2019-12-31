@@ -1,5 +1,5 @@
 //להחזיר אכולי- קוביה -
-
+//jimmie
 function initialgame() {  
  firstClickPosition=-1;
  secondClickPosition=-1;
