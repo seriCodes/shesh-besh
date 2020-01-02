@@ -1,7 +1,4 @@
-//להחזיר אכולי- קוביה -
-//jimmie
-//jimmie again
-function initialgame() {  
+function initialgame(){  
  firstClickPosition=-1;
  secondClickPosition=-1;
  countClicks=0;
@@ -21,14 +18,94 @@ function initialgame() {
  initialBoardAndCheckers();
  resetAndCopyBoard();
  whoStarts();
- throwDiceResultAndDoubleCheck();
+
+ //game1Simulation();
+
+ //throwDiceResultAndDoubleCheck();
  
  //simulationData();
  
- alert("Move checkers on dice at a time");
- copyDice();
+ //alert("Move checkers on dice at a time");
+ //copyDice();
  whosTurnVisualised();
  checkersEatenVisualised();
+}
+
+function game1Simulation(){
+    isWhiteTurn= true;
+    isDoubleVar = false;
+    firstThrowResult=simulatingDiceResult();
+    secondThrowResult=simulatingDiceResult();  
+    var ert = new Event('click');
+
+    var DivsCheckers = [];
+for(var j = 0; j<24;j++){
+    DivsCheckers[j]= document.getElementById(j+"");
+  /*  DivsCheckers[j].addEventListener('click', function (e) { 
+        makeMove(e);
+     }, false);*/
+    
+}
+
+   //alert(document.getElementById(0+ "").hasChildNodes());
+    for(var i=0; i<backgammonBoard.length; i++){
+        if(backgammonBoard[i].isWhite == isWhiteTurn){
+            DivsCheckers[i].dispatchEvent(ert);
+
+            DivsCheckers[i+firstThrowResult].dispatchEvent(ert);
+
+            //makeMove(document.getElementById(""+i));// לא עובד
+           // MouseEvent.click();
+          // var eventClick = document.createEvent('Event');
+          // event.initEvent('makeMoveTest', true, true);
+
+            //divReferenceSimulation = document.getElementById(""+i);
+
+           //divReferenceSimulation.addEventListener('makeMoveTest',function makeMove(event) {}, false);
+          // var evt = new Event("click");
+       //   divReferenceSimulation.dispatchEvent(event);
+          // document.getElementById(""+i).dispatchEvent(evt);
+
+//            makeMove(document.getElementById(""+i).Target);// לא עובד
+/*
+var elem = document.getElementById(i+"");
+
+// Listen for the event.
+/*
+elem.addEventListener('click', function (e) { 
+    makeMove(e);
+ }, false);
+*/
+// Dispatch the event.
+/*
+elem.
+
+elem2 = document.getElementById(i+firstThrowResult+"");
+elem2.dispatchEvent(onclick);
+elem[i]*/
+/*
+            document.getElementById(i+"").click(); 
+            if(firstThrowResult!=null){// || מצב בו אפשרי רק להזיז את הזריקה הראשונה אחרי הזזה של הראשונה){
+                document.getElementById(i+firstThrowResult+"").click(); 
+            }else{
+                document.getElementById(i+secondThrowResult+"").click(); 
+            }
+            i=0;            
+            if(moveCount===2){
+                break;
+            } */ 
+        }
+        
+    } 
+    
+    document.getElementById("18").click();
+    document.getElementById("21").click();
+}
+function simulatingDiceResult(){
+    var result =1;
+    for(; result<7;result++){
+        return result;
+    }
 }
 function simulationData(){
  SimulationThrowDiceResultAndDoubleCheck();
@@ -62,6 +139,10 @@ doubleButtonVisualizedHTML = document.createElement("input");
 doubleButtonVisualizedHTML.setAttribute("type", "button");
 doubleButtonVisualizedHTML.setAttribute("value", "DOUBLE");
 doubleButtonVisualizedHTML.setAttribute("onclick", "doubleTrilema()");
+simulationButtonVisualizedHTML = document.createElement("input");
+simulationButtonVisualizedHTML.setAttribute("type", "button");
+simulationButtonVisualizedHTML.setAttribute("value", "simulation game 1");
+simulationButtonVisualizedHTML.setAttribute("onclick", "game1Simulation()");
 
 
 document.body.appendChild(BoardDiv);
@@ -69,7 +150,7 @@ document.body.appendChild(diceDiv);
 document.body.appendChild(whosTurnVisualizedHTML);
 document.body.appendChild(eatenWhiteVisualizedHTML);
 document.body.appendChild(eatenBlackVisualizedHTML);
-document.body.appendChild(doubleButtonVisualizedHTML);
+document.body.appendChild(simulationButtonVisualizedHTML);
 
 }
 
@@ -190,13 +271,10 @@ function initialBoardDivDivisions(){
             }              
         if(divisionsCount>17){
                 checkersDivision.classList.add("secondSectionforSecondRow");
-                }  
-            
+                }            
             
             checkersDivision.id= divisionsCount;
-
             BoardDiv.appendChild(checkersDivision);
-
 }
     }
 function initialBoardAndCheckers(){
@@ -228,14 +306,15 @@ backgammonBoard = [] ;
 for (var i=0; i<24; i++){
     backgammonBoard[i]= new Checkers(undefined,0);
 }
-initCheckers();
-//simulationBoard();
+//initCheckers();
+simulationBoard();
 }
 
 function simulationBoard(){
-    backgammonBoard[15].isWhite=true;
-    backgammonBoard[15].checkersAmountCount=2;
-    backgammonBoard[1].isWhite=false;
+
+    backgammonBoard[0].isWhite=true;
+    backgammonBoard[0].checkersAmountCount=2;
+  /*  backgammonBoard[1].isWhite=false;
     backgammonBoard[1].checkersAmountCount=2;
     /*
     backgammonBoard[0].isWhite=false;
